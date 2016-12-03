@@ -8,7 +8,7 @@
 
 	<body>
       <h1>Please login here</h1>
-			<form action="asdf.php" method="POST">
+			<form action="homepage.php" method="POST">
 				<p>Username:</p><input type="text" name="user">
 				<p>Password:</p><input type="password" name="pass">
 				<br />
