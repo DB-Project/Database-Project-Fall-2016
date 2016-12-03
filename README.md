@@ -17,3 +17,7 @@ The default location was the following:
 `/Applications/MAMP/htdocs`
 
 ---
+### Problems sending data to DB
+If you have problem sending data to the DB, check if your output buffering is on.
+To do this, first locate your php.ini file.
+It should be in the following location: `/Applications/MAMP/bin/php/php7.0.12/conf/php.ini`
