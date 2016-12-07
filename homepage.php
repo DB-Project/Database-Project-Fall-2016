@@ -7,6 +7,7 @@
 		</head>
 		
 		<body>
+			<a href="logout.php">Log Out</a>
 			<?php
 				echo "This is the homepage!";
 			?>
