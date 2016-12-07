@@ -7,16 +7,11 @@
 	</head>
 
 	<body>
-<<<<<<< HEAD
 		<a href="signup.php">Sign Up</a>
 		<a href="login.php">Login</a>
 		
       <h1>Please sign up here</h1>
 			<form action="" method="POST">
-=======
-      <h1>Please sign up here</h1>
-			<form action="homepage.php" method="POST">
->>>>>>> a5b1a7fffb9eca20f91bb12309107710ca1493cc
 				<p>Username:</p><input type="text" name="user">
 				<p>Password:</p><input type="password" name="pass">
 				<p>First name:</p><input type="text" name="firstname">
@@ -26,7 +21,6 @@
 				<br />
 				<input type="submit" name="signup" />
 			</form>
-<<<<<<< HEAD
 		<?php
 			if(isset($_POST["signup"])){
 				if(!empty($_POST["user"]) && !empty($_POST["pass"]) && !empty($_POST["firstname"])  && !empty($_POST["lastname"]) && !empty($_POST["email"]) && !empty($_POST["zipcode"])){
@@ -67,8 +61,5 @@
 				}
 			}
 		?>
-=======
-
->>>>>>> a5b1a7fffb9eca20f91bb12309107710ca1493cc
 	</body>
 </html>
