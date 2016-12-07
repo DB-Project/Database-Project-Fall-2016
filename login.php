@@ -46,11 +46,10 @@
 						session_start();
 						$_SESSION['session_user'] = $userName;
 						
+						//ERROR CHECKING
+						// error_reporting(E_ALL | E_WARNING | E_NOTICE);
+						// ini_set('display_errors', TRUE);
 						
-						error_reporting(E_ALL | E_WARNING | E_NOTICE);
-						ini_set('display_errors', TRUE);
-						
-						// flush();
 						header("Location: homepage.php");
 						exit();
 					}
