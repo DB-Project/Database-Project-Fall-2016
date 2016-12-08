@@ -8,6 +8,19 @@
 		
 		<body>
 			<a href="logout.php">Log Out</a>
+			
+			<ul>
+				<li>
+					<a href="create_group.php">Create Group</a>
+				</li>
+				<li>
+					<a href="">Join Group</a>
+				</li>
+				<li>
+					<a href="">Make Friends</a>
+				</li>
+			</ul>
+			
 			<?php
 				echo "<br> This is the homepage! </br>";
 			?>
