@@ -9,7 +9,7 @@
 		<body>
 			<a href="logout.php">Log Out</a>
 			<?php
-				echo "This is the homepage!";
+				echo "<br> This is the homepage! </br>";
 			?>
 		</body>
 	</html>
