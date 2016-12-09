@@ -14,12 +14,11 @@
 		<a href="homepage.php">Home</a>
 		<a href="logout.php">Logout</a>
 		
-		<h1>Create your group here</h1>
+		<h1>Join a group</h1>
 			<form action="" method="POST">
-				<p>Group Name:</p><input type="text" name="groupName">
-				<p>Description:</p><TEXTAREA name="groupDescription" ROWS=3 COLS =30></TEXTAREA>
+				<p>Enter group name</p><input type="text" name="groupName">
 				<br />
-				<input type="submit" name="createGroup" />
+				<input type="submit" name="joinGroup"/>
 			</form>
 
 
@@ -34,34 +33,32 @@
 		 * - Foreign Key Restraint: creator (MEMBER)
 		 */
 		
-		if(isset($_POST["createGroup"])){
-			if(!empty($_POST["groupName"]) && !empty($_POST["groupDescription"])){ // && !empty($_POST["groupCreator"])
-				//Assign variables to user inputted values
-				// $groupID = $_POST["groupID"];
+		if(isset($_POST["joinGroup"])){
+			if(!empty($_POST["groupName"])){
+				// Assign variables to user inputted values
 				$groupName = $_POST["groupName"];
-				$groupDescription = $_POST["groupDescription"];
-				$groupCreator = $_SESSION['session_user'];
 
 				//Prevent SQL injections
-				// $groupID = stripslashes($groupID);
 				$groupName = stripslashes($groupName);
-				$groupDescription = stripslashes($groupDescription);
-				$groupCreator = stripslashes($groupCreator);
-				
+
 				//Connect to the database
-				include("db_connection.php");
-		
-				$theQuery = "INSERT INTO a_group(group_name, description, creator) VALUES ('$groupName', '$groupDescription', '$groupCreator')";
-				$theResult = mysqli_query($DB_LINK, $theQuery);
+ 				include("db_connection.php");
 				
+				//See if group exists and get group_id
+				//Store the group_id into DB
+				//Grant authorization
+				//$theQuery = "INSERT INTO belongs_to (group_id, username, authorized) VALUES ";
+				
+				$theResult = mysqli_query($DB_LINK, $theQuery);
 				if($theResult){
-					header("Location: homepage.php");
+					echo "IT WORKED";
+					// header("Location: homepage.php");
 				}
 				else{
 					//ERROR CHECKING
 					error_reporting(E_ALL | E_WARNING | E_NOTICE);
 					ini_set('display_errors', TRUE);
-				
+
 					echo "SQL Error: " . mysqli_error($DB_LINK);
 					echo "<br></br>";
 					echo "Error: Could not create a group";
