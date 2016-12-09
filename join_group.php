@@ -47,7 +47,7 @@
 				//See if group exists and get group_id
 				//Store the group_id into DB
 				//Grant authorization
-				//$theQuery = "INSERT INTO belongs_to (group_id, username, authorized) VALUES ";
+				// $theQuery = "INSERT INTO belongs_to (group_id, username, authorized) VALUES ";
 				
 				$theResult = mysqli_query($DB_LINK, $theQuery);
 				if($theResult){
