@@ -18,7 +18,7 @@
 			<form action="" method="POST">
 				<!-- <p>Group ID:</p><input type="text" name="groupID"> -->
 				<p>Group Name:</p><input type="text" name="groupName">
-				<p>Description:</p><input type="text" name="groupDescription">
+				<p>Description:</p><TEXTAREA name="groupDescription" ROWS=3 COLS =30></TEXTAREA>
 				<br />
 				<input type="submit" name="createGroup" />
 			</form>

@@ -21,3 +21,9 @@ The default location was the following:
 If you have problem sending data to the DB, check if your output buffering is on.
 To do this, first locate your php.ini file.
 It should be in the following location: `/Applications/MAMP/bin/php/php7.0.12/conf/php.ini`
+---
+### Problems with auto-increment:
+Make sure to check the table info and see what the next auto increment value.
+Note that the max increment number is: `2^32 - 1 = 2,147,483,647`.
+In addition, when deleting a row, it does not affect the next increment values.
+You can reset the auto increment value in the DB settings.
