@@ -56,7 +56,7 @@
 				$sessionUser = stripslashes($_SESSION['session_user']);
 
 				//Note: By default, when someone joins a group, they are not authorized.
-				//To be authorized to create events, the creator of the group must give permission
+				//LATER FEATURE: To be authorized to create events, the creator of the group must give permission
 				include("authorize.php");
 				$authCheck = checkAuthorization($resultGroupID, $sessionUser, $DB_LINK);
 				
