@@ -36,10 +36,7 @@
 		if(isset($_POST["joinGroup"])){
 			if(!empty($_POST["groupName"])){
 				// Assign variables to user inputted values
-				$groupName = $_POST["groupName"];
-
-				//Prevent SQL injections
-				$groupName = stripslashes($groupName);
+				$groupName = stripslashes($_POST["groupName"]);
 
 				//Connect to the database
  				include("db_connection.php");
@@ -48,30 +45,36 @@
 				include("search_group.php");
 				
 				//See if group exists and get group_id
-				$searchResult = searchGroupName($groupName);
-				//Assuming that the index 0 has the group_id column
-				$resultGroupID = stripslashes($searchResult[0]);
-				echo $resultGroupID;
+				$searchResult = searchGroupName($groupName, $DB_LINK);
 				
+				//Assuming that index 0 has the group_id column
+				$resultGroupID = stripslashes($searchResult[0]);
+				//Assuming that index 1 has the group_name column
+				$resultGroupName = stripslashes($searchResult[1]);
+				
+				//Current session username
+				$sessionUser = stripslashes($_SESSION['session_user']);
+
 				//Note: By default, when someone joins a group, they are not authorized.
 				//To be authorized to create events, the creator of the group must give permission
+				include("authorize.php");
+				$authCheck = checkAuthorization($resultGroupID, $sessionUser, $DB_LINK);
 				
-				// $theQuery = "INSERT INTO belongs_to (group_id, username, authorized) VALUES ";
+				$theQuery = "INSERT INTO belongs_to (group_id, username, authorized) VALUES ('$resultGroupID', '$sessionUser', '$authCheck')";
 				
-				// $theResult = mysqli_query($DB_LINK, $theQuery);
-				// if($theResult){
-// 					echo "IT WORKED";
-// 					// header("Location: homepage.php");
-// 				}
-// 				else{
-// 					//ERROR CHECKING
-// 					error_reporting(E_ALL | E_WARNING | E_NOTICE);
-// 					ini_set('display_errors', TRUE);
-//
-// 					echo "SQL Error: " . mysqli_error($DB_LINK);
-// 					echo "<br></br>";
-// 					echo "Error: Could not create a group";
-// 				}
+				$theResult = mysqli_query($DB_LINK, $theQuery);
+				if($theResult){
+					echo "Successfully joined " . $resultGroupName;
+				}
+				else{
+					//ERROR CHECKING
+					error_reporting(E_ALL | E_WARNING | E_NOTICE);
+					ini_set('display_errors', TRUE);
+
+					echo "SQL Error: " . mysqli_error($DB_LINK);
+					echo "<br></br>";
+					echo "Error: Could not create a group";
+				}
 			}
 		}
 		?>
