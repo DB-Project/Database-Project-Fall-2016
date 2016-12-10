@@ -35,9 +35,8 @@
 		 */
 		
 		if(isset($_POST["createGroup"])){
-			if(!empty($_POST["groupName"]) && !empty($_POST["groupDescription"])){ // && !empty($_POST["groupCreator"])
+			if(!empty($_POST["groupName"]) && !empty($_POST["groupDescription"])){
 				//Assign variables to user inputted values
-				// $groupID = $_POST["groupID"];
 				$groupName = $_POST["groupName"];
 				$groupDescription = $_POST["groupDescription"];
 				$groupCreator = $_SESSION['session_user'];
