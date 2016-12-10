@@ -17,7 +17,7 @@
 					<a href="join_group.php">Join Group</a>
 				</li>
 				<li>
-					<a href="">Make Friends</a>
+					<a href="make_friends.php">Make Friends</a>
 				</li>
 			</ul>
 			
