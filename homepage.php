@@ -27,12 +27,15 @@
 					<a href="create_event.php">Create Event </a>
 				</li>
 				<li>
-					<a href="">Rate Event </a>
+					<a href="give_ratings.php">Rate Event </a>
+				</li>
+				<li>
+					<a href="">See Average Rating</a>
 				</li>
 				<li>
 					<a href="friend_event.php">See Friend's Events </a>
 				</li>
-				<br>COMPLETED</br>
+				<br>Extra Features</br>
 				<li>
 					<a href="create_group.php">Create Group</a>
 				</li>

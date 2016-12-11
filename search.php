@@ -23,6 +23,7 @@
 			}
 		}
 		
+		//Search events sponsored by group that share same intrest user
 		public static function searchSharedInterest($userName, $DB_LINK){
 			$theQuery = "SELECT * FROM an_event NATURAL JOIN organize WHERE group_id IN (SELECT group_id FROM about, interested_in WHERE username = '$userName' AND about.keyword = interested_in.keyword AND about.category = interested_in.category)";
 
