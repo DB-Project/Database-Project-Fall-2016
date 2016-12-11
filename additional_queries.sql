@@ -60,7 +60,8 @@ VALUES	("admin", "Music", "Hip Hop"),
 INSERT INTO location (location_name, zipcode, address, description, latitude, longitude)
 VALUES 	("NYU", 11201, "234 Main St", "New York University", 42.2351667, -75.9586296),
 		("NEU", 02115, "52 Beacon St", "Northeaster University", 42.301441, -75.9631163),
-		("Joe' Pizza", 94531, "42 Mountain Ave.", "Original Pizza from Siciliy", 42.0026658, -75.4717757),
+		("Joe Pizza", 11201, "42 Mountain Ave.", "Original Pizza from Siciliy", 42.0026658, -75.4717757),
 		("Lobster Back", 45218, "1776 Tea House Rd.", "Tea company from London", 42.000061, -75.3930555),
-		("Founding Fathers' Club", 02210, "123 Freedom Ave. Boston, MA", 'For the people, By the people', -71.05888, 42.360083),
-		("White House", 20500, "1600 Pennsylvania Ave NW, Washington, DC", "My house", -77.0365298, 38.8976763);
+		("Founding Fathers", 02210, "123 Freedom Ave. Boston, MA", 'For the people, By the people', -71.05888, 42.360083),
+		("White House", 20500, "1600 Pennsylvania Ave NW, Washington, DC", "My house", -77.0365298, 38.8976763),
+		("Joe Pizza", 07675, "53 DeWolf St.", "Pizza love", 42.2351667, -75.9586296);

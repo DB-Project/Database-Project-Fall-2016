@@ -41,6 +41,8 @@
 					$userEmail = stripslashes($userEmail);
 					$userZipcode = stripslashes($userZipcode);
 					
+
+
 					//Encrypting the password
 					$userPassword = md5($userPassword);
 					include("db_connection.php");
