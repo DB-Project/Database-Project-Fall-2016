@@ -30,7 +30,7 @@
 					<a href="">Rate Event </a>
 				</li>
 				<li>
-					<a href="">See Friend's Events </a>
+					<a href="friend_event.php">See Friend's Events </a>
 				</li>
 				<br>COMPLETED</br>
 				<li>
