@@ -17,8 +17,27 @@
 		<h1>Authorize</h1>
 			<form action="" method="POST">
 				<p>Grant authorization to:</p><input type="text" name="memberID">
-				<p>For the group: </p><input type="text" name="groupName">
+				<!-- <input type="text" name="groupName"> -->
 				<br />
+
+				<p>For the group: </p>
+				<?php 
+				include("db_connection.php");
+				//Get all the existing group
+				$groupQuery = "SELECT * FROM a_group";
+				$resultGroupID = mysqli_query($DB_LINK, $groupQuery);
+				$groupOption = "";
+				while($theRow2 = mysqli_fetch_array($resultGroupID)){
+					$groupOption = $groupOption."<option value = '$theRow2[0]'> $theRow2[1] </option>";
+				}
+				?>
+
+				<select name = "groupName">
+					<?php echo $groupOption; ?>
+				</select>
+
+				<br />
+
 				<input type="submit" name="authorizeMember"/>
 			</form>
 			
