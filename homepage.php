@@ -45,6 +45,9 @@
 				<li>
 					<a href="authorization_page.php">Authorize</a>
 				</li>
+				<li>
+					<a href="create_event.php">Create an Event</a>
+				</li>
 			</ul>
 			
 			<?php
