@@ -18,7 +18,7 @@
 					<a href="">My Upcoming Events </a>
 				</li>
 				<li>
-					<a href="">Event Sign Up </a>
+					<a href="signup_event.php">Event Sign Up </a>
 				</li>
 				<li>
 					<a href="search_event.php">Search Events of Interest </a>
