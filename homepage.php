@@ -21,7 +21,7 @@
 					<a href="">Event Sign Up </a>
 				</li>
 				<li>
-					<a href="">Search Events of Interest </a>
+					<a href="search_event.php">Search Events of Interest </a>
 				</li>
 				<li>
 					<a href="create_event.php">Create Event </a>

@@ -7,7 +7,15 @@
 	$option = "";
 	while($theRow = mysqli_fetch_array($resultLocation)){
 		$option = $option."<option value = \"$theRow[0]@$theRow[1]\"> $theRow[0] $theRow[2] $theRow[1]</option>";
-		echo $option;
+	}
+	
+	//Get all the existing group
+	$groupQuery = "SELECT * FROM a_group";
+	$resultGroupID = mysqli_query($DB_LINK, $groupQuery);
+	
+	$groupOption = "";
+	while($theRow2 = mysqli_fetch_array($resultGroupID)){
+		$groupOption = $groupOption."<option value = '$theRow2[0]'> $theRow2[1] </option>";
 	}
 ?>
 <!DOCTYPE html>
@@ -35,12 +43,16 @@
 			<select name="location">
 				<?php echo $option; ?>
 			</select>
+			<p>Sponsored by</p>
+			<select name = "groupID">
+				<?php echo $groupOption; ?>
+			</select>
 			</br>
 			<input type="submit" name="createEvent" />
 		</form>
 		<?php
 			if(isset($_POST["createEvent"])){
-				if(!empty($_POST["title"]) && !empty($_POST["description"]) && !empty($_POST["startTime"])  && !empty($_POST["endTime"]) && !empty($_POST["location"])) {
+				if(!empty($_POST["title"]) && !empty($_POST["description"]) && !empty($_POST["startTime"])  && !empty($_POST["endTime"]) && !empty($_POST["location"]) && !empty($_POST["groupID"])){
 					//Assign variables to user inputted values
 					$eventTitle = stripslashes($_POST["title"]);
 					$eventDescription = stripslashes($_POST["description"]);
@@ -52,15 +64,17 @@
 					$eventLocation = $eventLocationZipcode[0];
 					$eventZipcode = $eventLocationZipcode[1];
 					
-					// echo $eventLocation;
-					// echo "</br>";
-					// echo $eventZipcode;
+					$groupID = stripslashes($_POST["groupID"]);
 					
 					$theQuery = "INSERT INTO an_event(title, description, start_time, end_time, location_name, zipcode) VALUES ('$eventTitle', '$eventDescription', '$eventStartTime', '$eventEndTime', '$eventLocation', '$eventZipcode')";
 					
 					$theResult = mysqli_query($DB_LINK, $theQuery);
 					
 					if($theResult){
+						//Adds current event_id and groupID to organize
+						$resultEventID = mysqli_insert_id($DB_LINK);
+						$organizeQuery = "INSERT INTO organize(event_id, group_id) VALUES ('$resultEventID', '$groupID')";
+						$resultOrganize = mysqli_query($DB_LINK, $organizeQuery);
 						echo $eventTitle . " successfully created!";
 					}
 					else{
