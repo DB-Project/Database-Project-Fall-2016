@@ -24,7 +24,7 @@
 					<a href="">Search Events of Interest </a>
 				</li>
 				<li>
-					<a href="">Create Event </a>
+					<a href="create_event.php">Create Event </a>
 				</li>
 				<li>
 					<a href="">Rate Event </a>
@@ -44,9 +44,6 @@
 				</li>
 				<li>
 					<a href="authorization_page.php">Authorize</a>
-				</li>
-				<li>
-					<a href="create_event.php">Create an Event</a>
 				</li>
 			</ul>
 			

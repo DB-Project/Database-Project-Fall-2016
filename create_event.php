@@ -1,84 +1,77 @@
+<?php 
+	include("db_connection.php");
+	
+	$locationQuery = "SELECT * FROM location";
+	$resultLocation = mysqli_query($DB_LINK, $locationQuery);
+	
+	$option = "";
+	while($theRow = mysqli_fetch_array($resultLocation)){
+		$option = $option."<option value = \"$theRow[0]@$theRow[1]\"> $theRow[0] $theRow[2] $theRow[1]</option>";
+		echo $option;
+	}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>
-			Sign Up Page
+			Sign Up for Event
 		</title>
 	</head>
 
 	<body>
 		<a href="homepage.php">Home</a>
-		<a href="signup.php">Sign Up</a>
-		<a href="login.php">Login</a>
-		
-      <h1>Create Event Here!</h1>
-			<form action="" method="POST">
-				<p>Title</p><input type="text" name="title">
-				<p>Description:</p><TEXTAREA name="description" ROWS=3 COLS =30></TEXTAREA>
-				<p>Start Time</p><input type="text" name="starttime">
-				<p>End Time</p><input type="text" name="endtime">
-				<p>location</p>
-				<?php 
-				include("db_connection.php");
-				
-
-				$locationQuery = "SELECT location_name FROM location";
-				$result = mysqli_query ($DB_LINK, $locationQuery);
-				echo "<select name='location'>";
-
-    				while($r = mysqli_fetch_array($result)){
-						echo "<option value=" . $r['location_name'] . ">" . $r['location_name'] . "</option>";
-
-					}
-  				echo "</select>";
-
-
-  				?>
-				<br />
-				<br />
-				<br />
-				<br />
-				<input type="submit" name="createEvent" />
-			</form>
+		<a href="logout.php">Logout</a>
+	
+	<h1>Create Event Here!</h1>
+		<form action "" method = "POST">
+			<p>Title</p><input type="text" name="title">
+			<p>Description</p><TEXTAREA name="description" ROWS=3 COLS =30></TEXTAREA>
+			
+<!--TODO: Put constraint on time so that start time cannot be after end time -->
+			
+			<p>Start Time (Format: YYYY-MM-DDTHH:MM:SSZ)</p><input type="datetime" name="startTime">
+			<p>End Time (Format: YYYY-MM-DDTHH:MM:SSZ)</p><input type="datetime" name="endTime">
+			<p>Location and Zip code</p>
+			<select name="location">
+				<?php echo $option; ?>
+			</select>
+			</br>
+			<input type="submit" name="createEvent" />
+		</form>
 		<?php
 			if(isset($_POST["createEvent"])){
-				if(!empty($_POST["title"]) && !empty($_POST["description"]) && !empty($_POST["starttime"])  && !empty($_POST["endtime"]) && !empty($_POST["location"])) {
-					echo "working?";
+				if(!empty($_POST["title"]) && !empty($_POST["description"]) && !empty($_POST["startTime"])  && !empty($_POST["endTime"]) && !empty($_POST["location"])) {
 					//Assign variables to user inputted values
+					$eventTitle = stripslashes($_POST["title"]);
+					$eventDescription = stripslashes($_POST["description"]);
+					$eventStartTime = stripslashes($_POST["startTime"]);
+					$eventEndTime = stripslashes($_POST["endTime"]);
 					
-					$eventTitle = $_POST["title"];
-					$eventDescription = $_POST["description"];
-					$eventstarttime = $_POST["starttime"];
-					$eventendtime = $_POST["endtime"];
-					$eventlocation = $_POST["location"];
-					// $eventzipcode = $_POST["zipcode"];
+					$eventLocationZipcode = explode('@', $_POST["location"], 2);
 					
-					//Prevent SQL injections
-					$eventTitle = stripslashes($eventTitle);
-					$eventDescription = stripslashes($eventDescription);
-					$eventstarttime = stripslashes($eventstarttime);
-					$eventendtime = stripslashes($eventendtime);
-					$eventlocation = stripslashes($eventlocation);
-					// $eventzipcode = stripslashes($eventzipcode);
+					$eventLocation = $eventLocationZipcode[0];
+					$eventZipcode = $eventLocationZipcode[1];
 					
-
-					// Ok so here we will take the current location we got from the form and get it's zipcode from location table and use the zipcode value and put it inside the an_event table later
-					$getZipcode = "SELECT zipcode FROM location WHERE location_name = '$eventlocation'";
-
-					// include("db_connection.php");
-			
-					$theQuery = "INSERT INTO an_event(title, description, starttime, endtime, location, zipcode) VALUES ('$eventTitle', '$eventDescription', '$eventstarttime', '$eventendtime', '$eventlocation', '$getZipcode')";
-
+					// echo $eventLocation;
+					// echo "</br>";
+					// echo $eventZipcode;
+					
+					$theQuery = "INSERT INTO an_event(title, description, start_time, end_time, location_name, zipcode) VALUES ('$eventTitle', '$eventDescription', '$eventStartTime', '$eventEndTime', '$eventLocation', '$eventZipcode')";
+					
 					$theResult = mysqli_query($DB_LINK, $theQuery);
 					
-					
-					
+					if($theResult){
+						echo $eventTitle . " successfully created!";
+					}
+					else{
+						//ERROR CHECKING
+						error_reporting(E_ALL | E_WARNING | E_NOTICE);
+						ini_set('display_errors', TRUE);
 
-					// ERROR CHECKING
-					error_reporting(E_ALL | E_WARNING | E_NOTICE);
-					ini_set('display_errors', TRUE);
-					
-					header("Location: homepage.php");
+						echo "SQL Error: " . mysqli_error($DB_LINK);
+						echo "</br>";
+						echo "Could not create an event";
+					}
 				}
 			}
 		?>
