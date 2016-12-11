@@ -30,7 +30,7 @@
 					<a href="give_ratings.php">Rate Event </a>
 				</li>
 				<li>
-					<a href="">See Average Rating</a>
+					<a href="average_ratings.php">See Average Rating</a>
 				</li>
 				<li>
 					<a href="friend_event.php">See Friend's Events </a>
