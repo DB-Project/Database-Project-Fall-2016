@@ -31,13 +31,24 @@
 					</br>
 					<input type="submit" name="searchInterest" />
 				</form>
-					
+		<p>There will be event details for the next three days</p>		
 		<?php
 			include("search.php");
-		
-			echo "<br> This is the public page </br>";
-			echo "<br> There will be event details for the next three days </br>";
-
+			
+			$theQuery = "SELECT * FROM an_event WHERE start_time >= CURDATE() AND end_time <= CURDATE() + INTERVAL 3 DAY";
+			
+			$theResult = mysqli_query($DB_LINK, $theQuery);
+			if($theResult){
+				echo "<br> There will be event details for the next three days </br>";
+				Search::printResultTable($theResult);
+			}
+			else{
+				echo "No events coming up in three days";
+			}
+			?>
+			
+			<p>These groups have the same interest: </p>
+			<?php
 			if(isset($_POST["searchInterest"])){
 				if(!empty($_POST["interest"])){
 					//Assign variables to user inputted values
