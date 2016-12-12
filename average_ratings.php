@@ -8,6 +8,9 @@
 		<title>
 			Average ratings
 		</title>
+		<style type = "text/css">
+		  table, th, td {border: 1px solid black};
+		 </style>
 	</head>
 
 	<body>

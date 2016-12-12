@@ -9,6 +9,23 @@
 			}
 		}
 		
+		public static function printResultTable($theResult){
+			print "<table>";
+			print "<tr>";
+			while($theRow = mysqli_fetch_field($theResult)){
+				print " <th>$theRow->name </th>";
+			}
+			print " </tr>";
+			
+			while($theRow = mysqli_fetch_assoc($theResult)){
+			   print " <tr>";
+			   foreach ($theRow as $name=>$value){
+				   print "<td>$value</td>";
+			   } // end field loop
+			   print " </tr>";
+			  } // end record loop
+		}
+		
 		//Search friends' events
 		public static function searchFriendEvent($userID, $DB_LINK){
 			$theQuery = "SELECT DISTINCT title, description, start_time, end_time, location_name, zipcode FROM sign_up NATURAL JOIN an_event WHERE username IN (SELECT friend_to FROM friend WHERE friend_of = '$userID')";
@@ -16,7 +33,8 @@
 			$theResult = mysqli_query($DB_LINK, $theQuery);
 			
 			if($theResult){
-				self::printResults($theResult);
+				// self::printResults($theResult);
+				self::printResultTable($theResult);
 			}
 			else{
 				echo "No results";
@@ -30,7 +48,7 @@
 			$theResult = mysqli_query($DB_LINK, $theQuery);
 
 			if($theResult){
-				self::printResults($theResult);
+				self::printResultTable($theResult);
 			}
 			else{
 				echo "No results";
