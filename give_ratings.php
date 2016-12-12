@@ -7,8 +7,7 @@
 
 	$userID = $_SESSION['session_user'];
 	
-	//TODO: NEED TO SELECT EVENTS THAT HAPPENED ONLY. NOT ON GOING
-	$userEventQuery = "SELECT event_id, title FROM sign_up NATURAL JOIN an_event WHERE username = '$userID' ";
+	$userEventQuery = "SELECT event_id, title FROM sign_up NATURAL JOIN an_event WHERE username = '$userID' AND end_time < NOW()";
 	$resultUserEvent = mysqli_query($DB_LINK, $userEventQuery);
 
 	$theOption = "";

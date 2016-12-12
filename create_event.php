@@ -39,7 +39,6 @@
 			
 			<p>Start Date</p>
 			<select name = "YYYY">
-			  <option value="2015">2015</option>
 			  <option value="2016">2016</option>
 			  <option value="2017">2017</option>
 			  <option value="2018">2018</option>
@@ -122,7 +121,6 @@
 			 <p>End Date</p>
 
 			<select name = "YYYYe">
-			  <option value="2015">2015</option>
 			  <option value="2016">2016</option>
 			  <option value="2017">2017</option>
 			  <option value="2018">2018</option>

@@ -57,7 +57,7 @@
 		
 		//TODO: NEED TO PUT IN TIME CONSTRATINS FRO THIS QUERY
 		public static function searchAvgRatigByGroup($userName, $DB_LINK){
-			$theQuery = "SELECT event_id, group_id, AVG(rating) FROM organize NATURAL JOIN sign_up WHERE group_id IN (SELECT group_id FROM belongs_to WHERE username = '$userName') GROUP BY event_id, group_id;";
+			$theQuery = "SELECT event_id, group_id, AVG(rating) FROM organize NATURAL JOIN sign_up NATURAL JOIN an_event WHERE start_time >= CURDATE() -  INTERVAL 3 DAY AND end_time <= NOW() AND group_id IN (SELECT group_id FROM belongs_to WHERE username = '$userName') GROUP BY event_id, group_id";
 			
 			$theResult = mysqli_query($DB_LINK, $theQuery);
 
