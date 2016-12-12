@@ -62,7 +62,7 @@
 			$theResult = mysqli_query($DB_LINK, $theQuery);
 
 			if($theResult){
-				self::printResults($theResult);
+				self::printResultTable($theResult);
 			}
 			else{
 				echo "No results";

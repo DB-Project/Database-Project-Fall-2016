@@ -8,11 +8,14 @@
 		<title>
 			Events of Shared Interest
 		</title>
+		<style type = "text/css">
+		  table, th, td {border: 1px solid black};
+		 </style>
 	</head>
 	<body>
 		<a href="homepage.php">Home</a>
 		<a href="logout.php">Logout</a>
-		
+		<p>
 		<?php
 			include("db_connection.php");
 			include("search.php");
@@ -20,6 +23,6 @@
 			
 			Search::searchSharedInterest($_SESSION['session_user'], $DB_LINK);
 		?>
-		
+		</p>
 	</body>
 </html>

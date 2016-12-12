@@ -18,6 +18,7 @@
 		<a href="logout.php">Logout</a>
 		
 		<h1>Average ratings from groups you are part of</h1>
+			<p>
 			<?php
 				//Include database
 				include("db_connection.php");
@@ -27,5 +28,6 @@
 				
 				Search::searchAvgRatigByGroup($userName, $DB_LINK);
 			?>
+			</p>
 	</body>
 </html>
