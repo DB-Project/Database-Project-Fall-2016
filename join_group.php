@@ -2,6 +2,18 @@
 	//Resumes session that was created in login
 	session_start();
 ?>
+<?php 
+	include("db_connection.php");
+	
+	//Get all the existing group
+	$groupQuery = "SELECT * FROM a_group";
+	$resultGroupID = mysqli_query($DB_LINK, $groupQuery);
+	
+	$groupOption = "";
+	while($theRow2 = mysqli_fetch_array($resultGroupID)){
+		$groupOption = $groupOption."<option value = '$theRow2[0]'> $theRow2[1] </option>";
+	}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,23 +28,15 @@
 		
 		<h1>Join a group</h1>
 			<form action="" method="POST">
-				<p>Enter group name</p><input type="text" name="groupName">
-				<br />
+				<p>Sponsored by</p>
+				<select name = "groupName">
+					<?php echo $groupOption; ?>
+				</select>
 				<input type="submit" name="joinGroup"/>
 			</form>
 
 
 		<?php
-		/* Constraints:
-		 * Group Table structure:
-		 * - group_id: int(20), NOT NULL, AUTO_INCREMENT
-		 * - group_name: varchar(20), NOT NULL DEFAULT 
-		 * - description: text, NOT NULL
-		 * - creator: varchar(20), NOT NULL DEFAULT
-		 * - Group ID: Primary Key
-		 * - Foreign Key Restraint: creator (MEMBER)
-		 */
-		
 		if(isset($_POST["joinGroup"])){
 			if(!empty($_POST["groupName"])){
 				// Assign variables to user inputted values
@@ -44,23 +48,15 @@
 				//Include search group table functions
 				include("search_group.php");
 				
-				//See if group exists and get group_id
-				$searchResult = searchGroupName($groupName, $DB_LINK);
-				
-				//Assuming that index 0 has the group_id column
-				$resultGroupID = stripslashes($searchResult[0]);
-				//Assuming that index 1 has the group_name column
-				$resultGroupName = stripslashes($searchResult[1]);
-				
 				//Current session username
 				$sessionUser = stripslashes($_SESSION['session_user']);
 
 				//Note: By default, when someone joins a group, they are not authorized.
 				//LATER FEATURE: To be authorized to create events, the creator of the group must give permission
 				include("authorize.php");
-				$authCheck = checkAuthorization($resultGroupID, $sessionUser, $DB_LINK);
+				$authCheck = checkAuthorization($groupName, $sessionUser, $DB_LINK);
 				
-				$theQuery = "INSERT INTO belongs_to (group_id, username, authorized) VALUES ('$resultGroupID', '$sessionUser', '$authCheck')";
+				$theQuery = "INSERT INTO belongs_to (group_id, username, authorized) VALUES ('$groupName', '$sessionUser', '$authCheck')";
 				
 				$theResult = mysqli_query($DB_LINK, $theQuery);
 				if($theResult){
@@ -73,7 +69,7 @@
 
 					echo "SQL Error: " . mysqli_error($DB_LINK);
 					echo "<br></br>";
-					echo "Error: Could not create a group";
+					echo "Error: Could not join a group";
 				}
 			}
 		}
