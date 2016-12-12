@@ -37,8 +37,7 @@
 			
 <!--TODO: Put constraint on time so that start time cannot be after end time -->
 			
-			<p>Start Time (Format: YYYY-MM-DDTHH:MM:SSZ)</p>
-
+			<p>Start Date</p>
 			<select name = "YYYY">
 			  <option value="2015">2015</option>
 			  <option value="2016">2016</option>
@@ -73,17 +72,17 @@
 				?> 
 			 </select>
 
-			 <select name = "Tval">
+			 <!-- <select name = "Tval">
 			 	<option value="T">T</option>
-			 </select>
-
-
+			 </select> -->
+			<p>Start time</p>
+				 
 			 <select name = "HH">
 			 	<?php  
 					for ($x = 0; $x <= 9; $x++) {
   						echo "<option value=0".$x. "> 0" .$x. "</option>";
 					}
-					for ($x = 10; $x <= 12; $x++) {
+					for ($x = 10; $x <= 23; $x++) {
   						echo "<option value=".$x. ">" .$x. "</option>";
 					}
 				?> 
@@ -94,7 +93,7 @@
 					for ($x = 0; $x <= 9; $x++) {
   						echo "<option value=0".$x. "> 0" .$x. "</option>";
 					}
-					for ($x = 10; $x <= 60; $x++) {
+					for ($x = 10; $x <= 59; $x++) {
   						echo "<option value=".$x. ">" .$x. "</option>";
 					}
 				?> 
@@ -105,22 +104,22 @@
 					for ($x = 0; $x <= 9; $x++) {
   						echo "<option value=0".$x. "> 0" .$x. "</option>";
 					}
-					for ($x = 10; $x <= 60; $x++) {
+					for ($x = 10; $x <= 59; $x++) {
   						echo "<option value=".$x. ">" .$x. "</option>";
 					}
 
 				?> 
 			 </select>
 
-			 <select name = "Zval">
+			 <!-- <select name = "Zval">
 			 	<option value="Z">T</option>
-			 </select>
+			 </select> -->
 			 <!--  -->
 			 <!--  -->
 			 <!--  END OF START TIME -->
 			 <!--  -->
 			 <!--  -->
-			 <p>End Time (Format: YYYY-MM-DDTHH:MM:SSZ)</p>
+			 <p>End Date</p>
 
 			<select name = "YYYYe">
 			  <option value="2015">2015</option>
@@ -156,17 +155,17 @@
 				?> 
 			 </select>
 
-			 <select name = "Tvale">
+			 <!-- <select name = "Tvale">
 			 	<option value="T">T</option>
-			 </select>
-
+			 </select> -->
+				 <p>End time</p>
 
 			 <select name = "HHe">
 			 	<?php  
 					for ($x = 0; $x <= 9; $x++) {
   						echo "<option value=0".$x. "> 0" .$x. "</option>";
 					}
-					for ($x = 10; $x <= 12; $x++) {
+					for ($x = 10; $x <= 23; $x++) {
   						echo "<option value=".$x. ">" .$x. "</option>";
 					}
 				?> 
@@ -177,7 +176,7 @@
 					for ($x = 0; $x <= 9; $x++) {
   						echo "<option value=0".$x. "> 0" .$x. "</option>";
 					}
-					for ($x = 10; $x <= 60; $x++) {
+					for ($x = 10; $x <= 59; $x++) {
   						echo "<option value=".$x. ">" .$x. "</option>";
 					}
 				?> 
@@ -188,16 +187,16 @@
 					for ($x = 0; $x <= 9; $x++) {
   						echo "<option value=0".$x. "> 0" .$x. "</option>";
 					}
-					for ($x = 10; $x <= 60; $x++) {
+					for ($x = 10; $x <= 59; $x++) {
   						echo "<option value=".$x. ">" .$x. "</option>";
 					}
 
 				?> 
 			 </select>
 
-			 <select name = "Zvale">
+			 <!-- <select name = "Zvale">
 			 	<option value="Z">T</option>
-			 </select>
+			 </select> -->
 
 			 <!--  -->
 			 <!-- END OF END TIME! -->
