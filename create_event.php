@@ -204,11 +204,11 @@
 
 
 			 <?php 
-			 $varrStartTime = "".$_POST["YYYY"]. "-" .$_POST["Month"]. "-" .$_POST["DD"]. "" .$_POST["Tval"]. "" .$_POST["HH"]. ":" .$_POST["MM"]. ":" .$_POST["SS"]. "".$_POST["Zval"]."";
+			 $varrStartTime = "".$_POST["YYYY"]. "-" .$_POST["Month"]. "-" .$_POST["DD"]. "T" . "" .$_POST["HH"]. ":" .$_POST["MM"]. ":" .$_POST["SS"]. "Z";
 			 ?>
 
 			 <?php 
-			 $varrEndTime = "".$_POST["YYYYe"]. "-" .$_POST["Monthe"]. "-" .$_POST["DDe"]. "" .$_POST["Tvale"]. "" .$_POST["HHe"]. ":" .$_POST["MMe"]. ":" .$_POST["SSe"]. "".$_POST["Zvale"]."";
+			 $varrEndTime = "".$_POST["YYYYe"]. "-" .$_POST["Monthe"]. "-" .$_POST["DDe"].  "T" . "" .$_POST["HHe"]. ":" .$_POST["MMe"]. ":" .$_POST["SSe"]. "Z";
 			 ?>
 
 
