@@ -31,6 +31,7 @@
 					</br>
 					<input type="submit" name="searchInterest" />
 				</form>
+				<div>
 		<p>There will be event details for the next three days</p>		
 		<?php
 			include("search.php");
@@ -45,8 +46,10 @@
 				echo "No events coming up in three days";
 			}
 			?>
-			
-			<p>These groups have the same interest: </p>
+			</div>
+			<div>
+				<!-- <p>These groups have the same interest: </p> -->
+				
 			<?php
 			if(isset($_POST["searchInterest"])){
 				if(!empty($_POST["interest"])){
@@ -68,5 +71,6 @@
 				}
 			}
 		?>
+		</div>
 	</body>
 </html>
