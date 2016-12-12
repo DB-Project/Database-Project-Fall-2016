@@ -39,7 +39,6 @@
 			
 			$theResult = mysqli_query($DB_LINK, $theQuery);
 			if($theResult){
-				echo "<br> There will be event details for the next three days </br>";
 				Search::printResultTable($theResult);
 			}
 			else{

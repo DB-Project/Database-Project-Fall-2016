@@ -15,7 +15,7 @@
 			
 			<ul>
 				<li>
-					<a href="">My Upcoming Events </a>
+					<a href="user_upcoming_events.php">My Upcoming Events </a>
 				</li>
 				<li>
 					<a href="signup_event.php">Event Sign Up </a>
