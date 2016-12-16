@@ -1,0 +1,6 @@
+Additional features added to Find Folks
+
+Create group	:	Allows user to create a new group
+Join group		:	Allows user to join a group
+Make friends	: 	Allows user to befriend other users
+Authorize		:	Allows user to authorize other users to be authorized to create events

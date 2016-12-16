@@ -1,0 +1,140 @@
+List of use cases:
+
+------------------------------------------------------------------------------------------------
+View My Upcoming Events:
+	(1)		SELECT * 
+			FROM an_event NATURAL JOIN sign_up 
+			WHERE username = '$userName' AND start_time >= CURDATE() 
+			AND end_time <= CURDATE() + INTERVAL 3 DAY
+		
+	This query selects all colummns from an_event table (which consists of event details) that is joined to sign_up table (which has the username information that is associtated with an event_id). The constraints are that the username has to match the current session's username and that the start time is today and end time is less than or equal to 3 days from today. The query should return all the columns to provide enough information for the user to see what the event is about.
+
+------------------------------------------------------------------------------------------------
+Sign up for events:
+	(2)		SELECT *
+			FROM an_event
+			
+	This query selects all columns from an_event table. This is done to retrieve all the events that are created. The query should return all the events in the an_event table.
+	
+	(3)		INSERT INTO sign_up (event_id, username, rating) 
+			VALUES ('$eventID', '$userName', 0)
+			
+	This query signs up the user to a particular event. The event_id, username, and rating is inserted into the sign_up
+
+------------------------------------------------------------------------------------------------
+Search for events of interest:
+	(4)		SELECT * 
+			FROM an_event NATURAL JOIN organize 
+			WHERE group_id IN (	SELECT group_id 
+								FROM about, interested_in 
+								WHERE username = '$userName' 
+								AND about.keyword = interested_in.keyword 
+								AND about.category = interested_in.category)
+							
+	This query selects all columns from an_event and organize table where a group_id is in a subquery that selects group_ids that matches user's interests (category and keyword). Therefore this query wiil return all events that are sponsored by groups that share the same interests as the user.
+
+------------------------------------------------------------------------------------------------
+Create an event:
+	(5)		SELECT * 
+			FROM location
+			
+	This query selects all the columns that are in the location table. The result of the query lets the user select an existing location when creating an event.
+
+	(6)		SELECT * 
+			FROM a_group
+
+	This query selects all the columns that are in the a_group table. The result of the query lets the user select an existing group to sponsor the event.
+
+	(7)		INSERT INTO an_event(title, description, start_time, end_time, location_name, zipcode) 
+			VALUES ('$eventTitle', '$eventDescription', '$eventStartTime', '$eventEndTime', '$eventLocation', '$eventZipcode')
+
+	The query inserts all the event details into the an_event table and creates a new event.
+
+------------------------------------------------------------------------------------------------
+Rate an event:
+	(8)		SELECT event_id, title 
+			FROM sign_up NATURAL JOIN an_event 
+			WHERE username = '$userID' AND end_time < NOW()
+	
+	This query gets all the events that has been completed in respect to today's date
+	
+	(9)		UPDATE sign_up 
+			SET rating = '$eventRatings' 
+			WHERE event_id = '$eventID' AND username = '$userID'
+			
+	This query updates the ratings column in sign_up table. User can input from 0 ~ 5.
+	
+------------------------------------------------------------------------------------------------
+See average ratings:
+	(10)	SELECT event_id, group_id, AVG(rating) 
+			FROM organize NATURAL JOIN sign_up NATURAL JOIN an_event 
+			WHERE start_time >= CURDATE() -  INTERVAL 3 DAY 
+			AND end_time <= NOW() 
+			AND group_id IN (	SELECT group_id 
+								FROM belongs_to 
+								WHERE username = '$userName') 
+			GROUP BY event_id, group_id"
+	
+	This query selects the average ratings of each event that happened in three days and groups it by the event and its sponsor
+	
+------------------------------------------------------------------------------------------------
+See freinds' events:
+	(11)	SELECT DISTINCT title, description, start_time, end_time, location_name, zipcode 
+			FROM sign_up NATURAL JOIN an_event 
+			WHERE username IN (	SELECT friend_to 
+								FROM friend 
+								WHERE friend_of = '$userID')
+	
+	This query selects event details that the user's friends signed up for
+	
+	
+Logout:
+	No queries used to perform this feature
+	
+------------------------------------------------------------------------------------------------
+Create group:
+	(12)	INSERT INTO a_group(group_name, description, creator) 
+			VALUES ('$groupName', '$groupDescription', '$groupCreator')
+	
+	This query inserts details into a_group table to create a group
+	
+------------------------------------------------------------------------------------------------
+Join Group:
+	(13)	SELECT * 
+			FROM a_group
+	
+	This query selects all groups that are existing in the DB.
+	
+	(14)	INSERT INTO belongs_to (group_id, username, authorized) 
+			VALUES ('$groupName', '$sessionUser', '$authCheck')
+	
+	This query inserts details into belongs_to talbe to let the user join a group
+	
+------------------------------------------------------------------------------------------------
+Make friends:
+	(15)	INSERT INTO friend (friend_of, friend_to) 
+			VALUES 	('$sessionUser', '$resultUserID'), 
+					('$resultUserID', '$sessionUser')
+	
+	This query befriends the user and another user and vice-versa since both have to be friends to each other.
+	
+------------------------------------------------------------------------------------------------
+Authorize:
+	(16)	SELECT * 
+			FROM a_group
+	
+	This query selects all existing groups in the database
+	
+	(17)	SELECT group_id, username 
+			FROM belongs_to 
+			WHERE group_id = '$groupID' 
+			AND username = '$resultUserID'
+
+	This query returns group id and username from belongs_to and checks if the user is actually part of the group that was provided.
+	
+	(18)	UPDATE belongs_to 
+			SET authorized = 1 
+			WHERE group_id = '$groupID' 
+			AND username = '$userName'
+			
+	This query updates authorized column to 1 for the provided username that belongs to the provided group

@@ -1,0 +1,32 @@
+List of files:
+additional_queries.sql		:	Queries used to fill up the following tables; interest, about, interested_in, and location
+authorization_page.php		:	User grants authorization to himself or to other user. Check if the username and group id 								exists
+authorize.php				:	PHP file that has two functions. 
+								(1) checkauthorization checks if a provided username is authorized for a group and 
+								(2) grantAuthorization grants authorization to provided username to a group
+average_ratings.php			:	Page where user sees a table of average rating of group that the user is part of
+create_event.php			:	Page where user creates his own event
+create_group.php			:	Page where user creates his own group
+db_connection.php			:	Page where database connection is made
+friend_event.php			:	Page where user sees all of his friends' event in a table
+give_ratings.php			:	Page where user gives ratings (from 0 ~ 5) to events that he has already attended
+homepage.php				:	Page where all of the features are located. Can search groups that have similar interest as 								you and see a table of events that are coming up in 3 days
+index.php					:	Public page where users and nonusers can see a table of all the events that are coming up 								in three days. Also, they can search groups that have the same interest as them
+join_group.php				: 	Page where user joins an existing group 
+login.php					: 	Page where user login to Find Folks
+logout.php					:	Page where user logs out from Find Folks
+make_friends.php			:	Page where user befriends another user
+ProjectPart2.sql			:	Creates tables for Find Folk database (provided by Prof. Frankl)
+README.md					:	README.md for github
+search_event.php			:	Page where user sees all the groups' events that share his interest
+search_group.php			:	PHP file that has a function to search a group's name 
+search_user.php				:	PHP file that has a function to search a user's ID
+search.php					:	Search class that has ## functions.
+								(1) printResults: Prints the result of a query
+								(2) printResultTable: Prints the result into table form
+								(3) searchFriendEvent: Prints a table of result that has user's friends' events
+								(4) searchSharedInterest: Prints a table of results that has events of groups that share 								same interest with the user
+								(5) searchAvgRatingByGroup: Prints a table of results that has event ratings from 3 days ago
+signup_event.php			:	Page where user signs up for an event
+signup.php					:	Page where user signs up for Find Folks
+user_upcoming_events.php	:	Page where users see his upcoming events in 3 days
